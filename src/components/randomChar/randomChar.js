@@ -5,9 +5,7 @@ import Spinner from "../spinner/spinner";
 import ErrorMessage from "../errorMessage/errorMessage";
 
 export default class RandomChar extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+
     gotService = new gotService();
     state = {
         char: {},

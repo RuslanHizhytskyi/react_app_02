@@ -3,7 +3,8 @@ import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
 import ErrorMessage from "../errorMessage/errorMessage";
-import CharacterPage from "../characterPage";
+import CharacterPage from "../Pages/Characters/CharacterPage";
+import BookPage from "../Pages/Books/BookPage";
 
 
 export default class App extends Component {
@@ -49,6 +50,7 @@ export default class App extends Component {
                         </Col>
                     </Row>
                     <CharacterPage/>
+                    <BookPage/>
                 </Container>
             </>
         );
