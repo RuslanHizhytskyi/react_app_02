@@ -31,14 +31,20 @@ export default class CharacterPage extends Component {
             return <ErrorMessage/>
         }
 
-        const itemList = (<ItemList
-            onItemSelected = {this.onItemSelected}
-            getData={this.gotService.getAllCharacters}
-            renderItem={(item) => `${item.name} (${item.gender})`}
-        />)
+        const itemList = (
+            <ItemList
+                pageNumber={15}
+                onItemSelected = {this.onItemSelected}
+                getData={this.gotService.getAllCharacters}
+                renderItem={(item) => `${item.name} (${item.gender})`}
+            />
+        )
 
         const itemDetails = (
-            <ItemDetails itemId={this.state.selectedItem}>
+            <ItemDetails
+                itemId={this.state.selectedItem}
+                getData={this.gotService.getCharacter}
+            >
                 <DetailsField field='gender' label='Gender'/>
                 <DetailsField field='born' label='Born'/>
                 <DetailsField field='died' label='Died'/>

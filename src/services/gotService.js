@@ -13,23 +13,23 @@ export default class GotService {
     }
 
     getAllCharacters = async (n) => {
-        const res = await this.getResource(`/characters?page=${n}&pageSize=10`);
+        const res = await this.getResource(`/characters?page=${n}`);
         return res.map(this._transformCharacter);
     }
     getCharacter = async (id) => {
         const res = await this.getResource(`/characters/${id}`);
         return this._transformCharacter(res);
     }
-    getAllHouses = async () => {
-        const res = await this.getResource(`/houses/`);
+    getAllHouses = async (n) => {
+        const res = await this.getResource(`/houses?page=${n}`);
         return res.map(this._transformHouse);
     }
     getHouse = async (id) => {
         const res = await this.getResource(`/houses/${id}`);
         return this._transformHouse(res);
     }
-    getAllBooks = async () => {
-        const res = await this.getResource(`/books/`);
+    getAllBooks = async (n) => {
+        const res = await this.getResource(`/books?page=${n}`);
         return res.map(this._transformBook);
     }
     getBook = async (id) => {
@@ -50,7 +50,9 @@ export default class GotService {
     }
 
     _transformHouse(house) {
+        const urlArr = house.url.split('/');
         return {
+            id: urlArr[urlArr.length - 1],
             name: house.name || 'no info =(',
             region: house.region || 'no info =(',
             words: house.words || 'no info =(',
@@ -61,7 +63,9 @@ export default class GotService {
     }
 
     _transformBook(book) {
+        const urlArr = book.url.split('/');
         return {
+            id: urlArr[urlArr.length - 1],
             name: book.name || 'no info =(',
             numberOfPages: book.numberOfPages || 'no info =(',
             publiser: book.publiser || 'no info =(',

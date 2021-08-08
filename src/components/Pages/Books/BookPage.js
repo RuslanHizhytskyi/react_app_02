@@ -31,14 +31,20 @@ export default class BookPage extends Component {
             return <ErrorMessage/>
         }
 
-        const itemList = (<ItemList
-            onCharSelected = {this.onItemSelected}
-            getData={this.gotService.getAllBooks}
-            renderItem={(item) => `${item.name} (${item.gender})`}
-        />)
+        const itemList = (
+            <ItemList
+                pageNumber={1}
+                onItemSelected = {this.onItemSelected}
+                getData={this.gotService.getAllBooks}
+                renderItem={(item) => `${item.name}`}
+            />
+        )
 
-        const charDetails = (
-            <ItemDetails charId={this.state.selectedBook}>
+        const bookDetails = (
+            <ItemDetails
+                itemId={this.state.selectedBook}
+                getData={this.gotService.getBook}
+            >
                 <DetailsField field='numberOfPages' label='Number of pages'/>
                 <DetailsField field='publiser' label='Publiser'/>
                 <DetailsField field='released' label='Released'/>
@@ -46,7 +52,7 @@ export default class BookPage extends Component {
         )
 
         return (
-            <RowBlock left={itemList} right={charDetails}/>
+            <RowBlock left={itemList} right={bookDetails}/>
         )
     }
 }

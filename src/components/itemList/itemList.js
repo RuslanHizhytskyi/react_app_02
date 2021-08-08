@@ -3,15 +3,18 @@ import './itemList.css';
 import Spinner from "../spinner/spinner";
 
 export default class ItemList extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     state = {
         itemList: null
     }
 
     componentDidMount() {
-        const { getData } = this.props;
+        const { getData, pageNumber } = this.props;
 
-        getData(5)
+        getData(pageNumber)
             .then((itemList) => {
                 this.setState({itemList})
             })
