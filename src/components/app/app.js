@@ -7,6 +7,7 @@ import ErrorMessage from "../errorMessage/errorMessage";
 import CharacterPage from "../Pages/Characters/CharacterPage";
 import BookPage from "../Pages/Books/BookPage";
 import HousePage from '../Pages/Houses/HousePage'
+import BooksItem from "../Pages/Books/BooksItem";
 
 
 export default class App extends Component {
@@ -54,8 +55,14 @@ export default class App extends Component {
                         </Row>
 
                         <Route path='/characters' component={CharacterPage}/>
-                        <Route path='/books' component={BookPage}/>
                         <Route path='/houses' component={HousePage}/>
+                        <Route path='/books' exact component={BookPage}/>
+                        <Route path='/books/:id' render={
+                            ({match, location, history}) => {
+                                console.log(match, history, location)
+                                return <BooksItem/>
+                            }
+                        }/>
 
                     </Container>
                 </div>
