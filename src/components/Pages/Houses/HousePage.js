@@ -6,10 +6,10 @@ import ItemDetails from '../../itemDetails/itemDetails';
 import DetailsField from "../../DetailsField/DetailsField";
 import ErrorMessage from "../../errorMessage/errorMessage";
 
-export default class CharacterPage extends Component {
+export default class HousePage extends Component {
     gotService = new GotService()
     state = {
-        selectedItem: null,
+        selectedHouse: null,
         error: false
     }
 
@@ -21,7 +21,7 @@ export default class CharacterPage extends Component {
 
     onItemSelected = (id) => {
         this.setState({
-            selectedItem: id
+            selectedHouse: id
         })
     }
 
@@ -31,31 +31,32 @@ export default class CharacterPage extends Component {
             return <ErrorMessage/>
         }
 
-        const randomPage = Math.floor(Math.random() * 214 + 1)
+        const randomPage = Math.floor(Math.random() * 45 + 1)
 
         const itemList = (
             <ItemList
                 pageNumber={randomPage}
                 onItemSelected = {this.onItemSelected}
-                getData={this.gotService.getAllCharacters}
-                renderItem={(item) => `${item.name} (${item.gender})`}
+                getData={this.gotService.getAllHouses}
+                renderItem={(item) => `${item.name}`}
             />
         )
 
-        const itemDetails = (
+        const bookDetails = (
             <ItemDetails
-                itemId={this.state.selectedItem}
-                getData={this.gotService.getCharacter}
+                itemId={this.state.selectedHouse}
+                getData={this.gotService.getHouse}
             >
-                <DetailsField field='gender' label='Gender'/>
-                <DetailsField field='born' label='Born'/>
-                <DetailsField field='died' label='Died'/>
-                <DetailsField field='culture' label='Culture'/>
+                <DetailsField field='region' label='Region'/>
+                <DetailsField field='words' label='Words'/>
+                {/*<DetailsField field='titles' label='Titles'/>*/}
+                {/*<DetailsField field='overlord' label='Overlord'/>*/}
+                {/*<DetailsField field='ancestralWeapon' label='Ancestral weapon'/>*/}
             </ItemDetails>
         )
 
         return (
-            <RowBlock left={itemList} right={itemDetails}/>
+            <RowBlock left={itemList} right={bookDetails}/>
         )
     }
 }

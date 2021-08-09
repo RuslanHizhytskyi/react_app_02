@@ -21,7 +21,7 @@ export default class BookPage extends Component {
 
     onItemSelected = (id) => {
         this.setState({
-            selectedChar: id
+            selectedBook: id
         })
     }
 

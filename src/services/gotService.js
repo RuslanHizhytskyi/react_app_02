@@ -33,7 +33,7 @@ export default class GotService {
         return res.map(this._transformBook);
     }
     getBook = async (id) => {
-        const res = await this.getResource(`/book/${id}`);
+        const res = await this.getResource(`/books/${id}`);
         return this._transformBook(res);
     }
 
