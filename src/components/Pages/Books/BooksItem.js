@@ -6,14 +6,11 @@ import DetailsField from "../../DetailsField/DetailsField";
 export default class BooksItem extends Component {
 
     gotService = new GotService()
-    state = {
-        selectedBook: 5
-    }
 
     render() {
         return (
             <ItemDetails
-                itemId={this.state.selectedBook}
+                itemId={this.props.bookId}
                 getData={this.gotService.getBook}
             >
                 <DetailsField field='numberOfPages' label='Number of pages'/>
